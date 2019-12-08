@@ -1,0 +1,116 @@
+
+
+@font-face {
+  font-family: Akzidenz;
+  src: url(AkzidenzGrotesk.otf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+body, html {
+  width: 100%;
+  min-height: 500vh;
+  -webkit-overflow-scrolling: auto;
+}
+
+text {
+  fill: black;
+  font-size: 30px;
+  font-family: sans-serif;
+}
+
+#wrapper {
+  position: fixed;
+  top: 0; left: 0;
+  bottom: ; right: 0;
+}
+#squareOne, #squareTwo {
+  width: 50vw;
+  height: 100vh;
+  margin-right: -4px;
+  display: inline-block;
+  z-index: 0;
+  -webkit-animation: image_blur 10s infinite;
+}
+#squareTwo { animation-delay: 5s }
+
+/*
+#squareOne {
+  margin: -1px;
+  display: flex;
+  flex: 1 1;
+  top: 0px;
+  margin: -2px;
+  width: 50%;
+  max-height: 50%;
+  display: inline-block;
+  z-index: 0;
+  -webkit-animation: image_blur 10s infinite;
+}
+
+#squareTwo {
+  margin: -1px;
+  display: flex;
+  flex: 1 1;
+  top: -100px;
+  margin: -2px;
+  width: 50%;
+  max-height: 50%;
+  display: inline-block;
+  z-index: 0;
+  -webkit-animation: image_blur 10s infinite;
+  animation-delay: 5s;
+}
+*/
+.waterfall {
+    z-index: 2;
+    /* margin-top: 800px; */
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    /* background-color: white; */
+    text-align: center;
+    font-size: 30px;
+    font-family: Akzidenz;
+}
+.waterfall > * { border: 5px solid #000; background: #fff; display: block }
+.waterfall > *:first-child { margin-bottom: -4px;
+border-radius: 120px 0 0 0 }
+
+.info {
+  font-family: Akzidenz;
+  /* content: ""; */
+  /* position: absolute; */
+  background-color: #fff;
+  border: 5px solid black;
+  border-radius: 120px 0 0 0;
+  /* margin-left: 50%; */
+  padding-top: 80px;
+  padding-left: 10px;
+  margin-bottom: -5px;
+  /* margin-top: 25%; */
+  width: 200px;
+  height: 400px;
+  /* transform: translate(-50%, -50%); */
+  overflow: hidden;
+  z-index: 1;
+  display: none;
+}
+
+svg {
+  width: auto;
+  height: auto;
+  background-color: #f7f7f7;
+  z-index: 1;
+}
+
+@-webkit-keyframes image_blur {
+    0% { -webkit-filter: blur(20px);}
+    50% { -webkit-filter: blur(0px);}
+    100% { -webkit-filter: blur(20px);}
+}

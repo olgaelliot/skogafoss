@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Skogafoss</title>
+  <link rel="stylesheet" href="publication2.css"/>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div class="waterfall">
+      <svg viewBox="0 0 250 600">
+        <path id="curve" fill="transparent" d="M 0 600 Q 0 350 0 350 C 0 0 300 100 300 50" /></path>
+        <text width="100%" style="transform:translate3d(0,0,0);">
+            <textPath style="transform:translate3d(0,0,0);" alignment-baseline="top"
+            xlink:href="#curve" startOffset="1200px" id="text-path"></textPath>
+        </text>
+      </svg>
+        <div class="info"></div>
+      <marquee height="210px" width="210px" direction="down" loop="-1" style="border:solid">
+        SKOGAFOSS
+      </marquee>
+    </div>
+
+    <div id="squareOne"></div>
+    <div id="squareTwo"></div>
+</div>
+
+  <script type="text/javascript" src="data/review_texts.js"></script>
+  <script type="text/javascript" src="nodes.js"></script>
+  <script type="text/javascript">
+    var output_div = document.getElementsByClassName( 'info' );
+    output_div = output_div[ 0 ];
+
+    // var index = 0;
+    //
+    // function displayLine( ) {
+    //   output_div.innerHTML = review_texts[ index ];
+    //   console.log( review_texts[ index ] );
+    //
+    //
+    //   index++;
+    //   if ( index >= review_texts.length )
+    //     index = 0;
+    //
+    //   setTimeout( displayLine, 1000 );
+    // }
+    //
+    // displayLine( );
+
+    function load_images() {
+          // var div = document.getElementById('instagram');
+
+          var div1 = document.getElementById('squareOne');
+          var randomNumber = 2;
+          div1.style.backgroundImage = "url('" + instagramImages[randomNumber]['thumbnail_src'] + "')";
+          div1.style.backgroundSize = "cover";
+
+          setInterval(function(){
+
+            randomNumber = Math.ceil(Math.random() * 50);
+            div1.style.backgroundImage = "url('" + instagramImages[randomNumber]['thumbnail_src'] + "')";
+          }, 10000);
+
+         var div2 = document.getElementById('squareTwo');
+         var randomNumber = 2;
+
+          setInterval(function(){
+
+           randomNumber = Math.ceil(Math.random() * 100);
+           div2.style.backgroundSize = "cover";
+           div2.style.backgroundImage = "url('" + instagramImages[randomNumber]['thumbnail_src'] + "')";
+         }, 10000);
+
+          // for(var i = 0; i < instagramImages.length; i++) {
+          //     var img = "<img class='tile' src='" + instagramImages[i]['thumbnail_src'] + "'>";
+          //
+          //     // change background-img for the different divs
+          //     // set timeout
+          //
+          //     div.innerHTML = div.innerHTML + img;
+          //
+          //   // setTimeout( load_images, 1000 );
+          //
+          //     //$(".back1").css('background-img', instagramImages[i]['thumbnail_src'])
+          // }
+      }
+      load_images();
+
+      const textPath = document.querySelector("#text-path");
+
+      const h = document.documentElement,
+            b = document.body,
+            st = 'scrollTop',
+            sh = 'scrollHeight';
+
+      document.addEventListener( "scroll", e => {
+        let percent = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+        textPath.setAttribute( "startOffset", (-percent * 40) + 1200);
+
+        if ( percent > 100 ) {
+          showReview( );
+
+          document.body.scrollTop = 0;
+        } else if ( percent < 0 ) {
+          showReview( );
+
+          document.body.scrollTop = 99999999999;
+        }
+      } );
+
+      const text_output = document.getElementById( 'text-path' );
+      function showReview( index ) {
+        if ( index == undefined )
+          index = Math.floor( Math.random( ) * review_texts.length );
+
+        text_output.innerHTML = review_texts[ index ];
+      }
+      showReview();
+  </script>
+
+</body>
+
+</html>
